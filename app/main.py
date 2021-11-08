@@ -45,7 +45,7 @@ def numOfficers():
             if type(numOfficers) is int:
                 numOfficers = str(numOfficers)
             if numOfficers.isnumeric() and int(numOfficers) == 8:
-                return "You are on a roll! For the next question, make a GET request to https://acc-api-scavenger-hunt.herokuapp.com//blackandwhite/<your_answer_here> with the first name of the only officer that has a black and white photo. Go to https://aggiecodingclub.com to find out!"
+                return "You are on a roll! For the next question, make a GET request to https://acc-api-scavenger-hunt.herokuapp.com//blackandwhite/<your_answer_here> with the first name of the only officer that has the most old school photo. Go to https://aggiecodingclub.com to find out!"
             else:
                 return "Hmmm... Didn't get the number quite right. Try again!"
         else:
