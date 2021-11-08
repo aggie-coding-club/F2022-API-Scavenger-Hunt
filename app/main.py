@@ -57,7 +57,7 @@ def firstname(firstname):
         if firstname.lower() == 'hannah':
             return 'You are an expert! Where did Dakshika "Empower students to use new technologies"? Gather the company name and send a POST request to https://acc-dsc-api.herokuapp.com/empower with the JSON object {"company": "your_answer_here"}.'
         else:
-            return "Not quite! Make sure you spelled her first name right! Hint: She was one of ACCs past Presidents!"
+            return "Not quite! Make sure you spelled her first name right! Hint: She was one of ACC's past Presidents!"
 
 
 @app.route('/empower', methods=['POST'])
@@ -83,7 +83,7 @@ def pizza(topping):
         if topping.lower() == 'strawberries' or topping.lower() == 'strawberry':
             return 'What is going on!?!? You are a genius! Ok this one is the last trivia question, we promise! What is the height of the photo on our landing page? Just specify the number of pixels. Make a POST request to https://acc-dsc-api.herokuapp.com/static/images/acc-website-graphics with the JSON object {"height": "your_answer_here"}.'
         else:
-            return "Not quite! Hint: You may need to INSPECT it closer if you want to count all the pixels."
+            return "Not quite! Check out the sldies from our first meeting. I have a feeling it's there."
 
 @app.route('/static/images/acc-website-graphics', methods=['POST'])
 def finalStretch():
@@ -100,7 +100,7 @@ def finalStretch():
             else:
                 return "Hmmm... Didn't get the height quite right. Try again!"
         else:
-            return "Not quite! Make sure you send it as 'height' and not 'max_height'."
+            return "Not quite! Make sure you send it as 'height' and not 'max_height'. Hint: You may need to INSPECT it closer if you want to count all the pixels."
 
 @app.route('/leaderboard', methods=['POST'])
 def leaderboard():
