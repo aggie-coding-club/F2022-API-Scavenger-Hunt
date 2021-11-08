@@ -1,9 +1,10 @@
 import requests
 import firebase_admin
+import datetime
 from firebase_admin import credentials
 from firebase_admin import firestore
 from flask import Flask, render_template, request, redirect
-
+from firebase_admin.firestore import SERVER_TIMESTAMP
 app = Flask(__name__)
 
 # Use a service account
@@ -70,7 +71,7 @@ def empoweringStudents():
             return "You didn't provide a JSON body. Try again!"
         if 'company' in json:
             if json['company'].lower() == 'microsoft':
-                return "Sweet! We talked about this one at our first meeting and it turned a lot of heads! What was Anthony's favorite pizza topping? Make a GET request to https://acc-api-scavenger-hunt.herokuapp.com/pizza/topping/<your_answer_here>"
+                return "Sweet! We talked about this one at our first meeting and it turned a lot of heads! What was Anthony's favorite pizza topping? Make a GET request to https://acc-api-scavenger-hunt.herokuapp.com/pizza/toppings/<your_answer_here>"
             else:
                 return "Hmmm... Didn't get the company name quite right. Try again!"
         else:
@@ -112,7 +113,8 @@ def leaderboard():
 
             doc_ref = db.collection(u'hall_of_fame')
             data = {
-                u'name': name
+                u'name': name,
+                'created': SERVER_TIMESTAMP,
             }
 
             doc_ref.add(data)
