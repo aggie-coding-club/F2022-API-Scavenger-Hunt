@@ -1,3 +1,2 @@
 firebase-admin==5.1.0
 flask==2.0.2
-gunicorn==
