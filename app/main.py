@@ -84,7 +84,7 @@ def oldestCode():
             return "You didn't provide a JSON body. Try again!"
         if 'code' in json:
             if json['code'].lower() == 'liftr':
-                return "What is going on?!?!? You're a genius! \n Ready for the last one? \n Who \'Feras specializes in Computer Graphics and animation, and hopes to continue this work into the field. Personal hobbies include traveling to eat good food, and gaming.\' Make a GET request to https://acc-api-scavenger-hunt.herokuapp.com/blank/person/<your_answer_here>"
+                return "What is going on?!?!? You're a genius! \n Ready for the last one? \n Who \'... specializes … work into the field. Personal … traveling … good food … gaming.'\' Make a GET request to https://acc-api-scavenger-hunt.herokuapp.com/blank/person/<your_answer_here>"
             else:
                 return "Hmmm... Didn't get the repo name quite right. Try again!"
         else:
