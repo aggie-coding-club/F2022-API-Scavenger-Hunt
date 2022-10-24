@@ -51,7 +51,7 @@ def numOfficers():
         else:
             return "Not quite! Make sure your key is num_officers."
 
-@app.route('/discord/deadline', methods=['GET'])
+@app.route('/discord/deadline/<deadline>', methods=['GET'])
 def discordDeadline(deadline):
     if request.method == 'GET':
         if( deadline == '11-14-2022'):
