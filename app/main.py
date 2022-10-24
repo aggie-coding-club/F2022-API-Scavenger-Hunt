@@ -45,29 +45,23 @@ def numOfficers():
             if type(numOfficers) is int:
                 numOfficers = str(numOfficers)
             if numOfficers.isnumeric() and int(numOfficers) == 7:
-                return "STUNNING! \n. Next question: When is the deadline for the ACC Discord Bot Competition? Make a POST request to https://acc-api-scavenger-hunt.herokuapp.com//discord/deadline/MM-DD-YYYY" 
+                return "STUNNING! \n. Next question: When is the deadline for the ACC Discord Bot Competition? Make a GET request to https://acc-api-scavenger-hunt.herokuapp.com//discord/deadline/MM-DD-YYYY" 
             else:
                 return "Hmmm... Didn't get the number quite right. Try again!"
         else:
             return "Not quite! Make sure your key is num_officers."
 
-@app.route('/discord/deadline', methods=['POST'])
-def deadline():
-    if request.method == 'POST':
-
-        json = request.get_json();
-
-        if 'deadline' in json:
-            deadline = json['deadline']
-
-            if( deadline == '11-14-2022'):
-                return "You are on a roll! \n. Next question: Where was Casey? Make a GET request to https://acc-api-scavenger-hunt.herokuapp.com//casey_travels/<YOUR_CITY_ANSWER_HERE>"
-            elif (deadline == '11-21-2022'):
-                return "hmmm, this is the when winners are announced, not quite the deadline"
-            else:
-                return "Not yet, make sure to look up the deadline on the discord!"
+@app.route('/discord/deadline', methods=['GET'])
+def discordDeadline(deadline):
+    if request.method == 'GET':
+        if( deadline == '11-14-2022'):
+            return "You are on a roll! \n. Next question: Where was Casey? Make a GET request to https://acc-api-scavenger-hunt.herokuapp.com//casey_travels/<YOUR_CITY_ANSWER_HERE>"
+        elif (deadline == '11-21-2022'):
+            return "hmmm, this is the when winners are announced, not quite the deadline"
         else:
-            return "Hmmmm, make sure your key is \'deadline\' in your json object"
+            return "Not yet, make sure to look up the deadline on the discord!"
+    else:
+        return "Hmmmm, make sure your key is \'deadline\' in your json object"
 
 @app.route('/casey_travels/<location>', methods=['GET'])
 def location(location):
