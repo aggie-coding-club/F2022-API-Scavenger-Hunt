@@ -8,7 +8,7 @@ from firebase_admin.firestore import SERVER_TIMESTAMP
 app = Flask(__name__)
 
 # Use a service account
-cred = credentials.Certificate('f2021-api-scavenger-hunt-firebase-adminsdk-srfna-5cc4ecb304.json')
+cred = credentials.Certificate('api-scavenger-hunt-firebase-adminsdk-khivo-5707909885.json')
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
