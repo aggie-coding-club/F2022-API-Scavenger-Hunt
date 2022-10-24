@@ -31,7 +31,7 @@ def home():
         else:
             return 'Not quite! Make sure you have no extra spaces. The values for each acronymn be the full form. POST a JSON object {"acc": "your_answer_here"} on the same url'
     else:
-        return 'Welcome! Create a POST request on the same URL with the full forms of the acronym "acc" via the following JSON object {"acc": "your_answer_here"}'
+        return 'Welcome (V2)!!!!!!! Create a POST request on the same URL with the full forms of the acronym "acc" via the following JSON object {"acc": "your_answer_here"}'
 
 # First Task
 @app.route('/numofficers', methods=['POST'])
