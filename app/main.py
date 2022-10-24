@@ -31,7 +31,7 @@ def home():
         else:
             return 'Not quite! Make sure you have no extra spaces. The values for each acronymn be the full form. POST a JSON object {"acc": "your_answer_here"} on the same url'
     else:
-        return 'Welcome (V2)!!!!!!! Create a POST request on the same URL with the full forms of the acronym "acc" via the following JSON object {"acc": "your_answer_here"}'
+        return 'Welcome!!!!!! Create a POST request on the same URL. Include a JSON object with ACC\'s full name. JSON object {"acc": "your_answer_here"}'
 
 # First Task
 @app.route('/numofficers', methods=['POST'])
@@ -44,64 +44,66 @@ def numOfficers():
             numOfficers = json['num_officers']
             if type(numOfficers) is int:
                 numOfficers = str(numOfficers)
-            if numOfficers.isnumeric() and int(numOfficers) == 8:
-                return "You are on a roll! For the next question, make a GET request to https://acc-api-scavenger-hunt.herokuapp.com//blackandwhite/<your_answer_here> with the first name of the officer that has the most old school photo. Go to https://aggiecodingclub.com to find out!"
+            if numOfficers.isnumeric() and int(numOfficers) == 7:
+                return "STUNNING! \n. Next question: When is the deadline for the ACC Discord Bot Competition? Make a POST request to https://acc-api-scavenger-hunt.herokuapp.com//discord/deadline/MM-DD-YYYY" 
             else:
                 return "Hmmm... Didn't get the number quite right. Try again!"
         else:
             return "Not quite! Make sure your key is num_officers."
 
+@app.route('/discord/deadline', methods=['POST'])
+def deadline():
+    if request.method == 'POST':
 
-@app.route('/blackandwhite/<firstname>', methods=['GET'])
-def firstname(firstname):
-    if request.method == 'GET':
-        if firstname.lower() == 'hannah':
-            return 'You are an expert! Where did Dakshika "Empower students to use new technologies"? Gather the company name and send a POST request to https://acc-api-scavenger-hunt.herokuapp.com/empower with the JSON object {"company": "your_answer_here"}.'
+        json = request.get_json();
+
+        if 'deadline' in json:
+            deadline = json['deadline']
+
+            if( deadline == '11-14-2022'):
+                return "You are on a roll! \n. Next question: Where was Casey? Make a GET request to https://acc-api-scavenger-hunt.herokuapp.com//casey_travels/<YOUR_CITY_ANSWER_HERE>"
+            elif (deadline == '11-21-2022'):
+                return "hmmm, this is the when winners are announced, not quite the deadline"
+            else:
+                return "Not yet, make sure to look up the deadline on the discord!"
         else:
-            return "Not quite! Make sure you spelled her first name right! Hint: She was one of ACC's past Presidents!"
+            return "Hmmmm, make sure your key is \'deadline\' in your json object"
+
+@app.route('/casey_travels/<location>', methods=['GET'])
+def location(location):
+    if request.method == 'GET':
+        if location.lower() == 'florence':
+            return 'You are an expert! \n What is the oldest acc code? Gather the name and send a POST request to https://acc-api-scavenger-hunt.herokuapp.com/liftr with the JSON object {"code": "your_answer_here"}.'
+        if location.lower() == 'college station' or location.lower() == 'cstat':
+            return "Not quite! Remember, where WAS casey"
+        else:
+            return "Hmmmmm, find out where Casey has been in the past."
 
 
-@app.route('/empower', methods=['POST'])
-def empoweringStudents():
+@app.route('/liftr', methods=['POST'])
+def oldestCode():
     if request.method == 'POST':
 
         json = request.get_json()
 
         if json is None:
             return "You didn't provide a JSON body. Try again!"
-        if 'company' in json:
-            if json['company'].lower() == 'microsoft':
-                return "Sweet! We talked about this one at our first meeting and it turned a lot of heads! What was Anthony's favorite pizza topping? Make a GET request to https://acc-api-scavenger-hunt.herokuapp.com/pizza/toppings/<your_answer_here>"
+        if 'code' in json:
+            if json['code'].lower() == 'liftr':
+                return "What is going on?!?!? You're a genius! \n Ready for the last one? \n Who \'Feras specializes in Computer Graphics and animation, and hopes to continue this work into the field. Personal hobbies include traveling to eat good food, and gaming.\' Make a GET request to https://acc-api-scavenger-hunt.herokuapp.com/blank/person/<your_answer_here>"
             else:
-                return "Hmmm... Didn't get the company name quite right. Try again!"
+                return "Hmmm... Didn't get the repo name quite right. Try again!"
         else:
-            return "Not quite! A Google search may be helpful here."
+            return "Not quite! A github search may be helpful here."
 
 
-@app.route('/pizza/toppings/<topping>', methods=['GET'])
-def pizza(topping):
+@app.route('/blank/person/<name>', methods=['GET'])
+def person(name):
     if request.method == 'GET':
-        if topping.lower() == 'strawberries' or topping.lower() == 'strawberry':
-            return 'What is going on!?!? You are a genius! Ok this one is the last trivia question, we promise! What is the height of the photo on our landing page? Just specify the number of pixels. Make a POST request to https://acc-api-scavenger-hunt.herokuapp.com/static/images/acc-website-graphics with the JSON object {"height": "your_answer_here"}.'
+        if name.lower() == 'feras' or name.lower() == 'khemakhem':
+            return 'CONGRATULATIONS! Send a POST request to https://acc-api-scavenger-hunt.herokuapp.com/leaderboard with the JSON body {"name": "your_name_here"}.'
         else:
-            return "Not quite! Check out the sldies from our first meeting. I have a feeling it's there."
-
-@app.route('/static/images/acc-website-graphics', methods=['POST'])
-def finalStretch():
-    if request.method == 'POST':
-
-        json = request.get_json()
-
-        if 'height' in json:
-            height = json['height']
-            if type(height) is int:
-                height = str(height)
-            if height.isnumeric() and int(height) == 400:
-                return 'CONGRATULATIONS! Send a POST request to https://acc-api-scavenger-hunt.herokuapp.com/leaderboard with the JSON body {"name": "your_name_here"}.'
-            else:
-                return "Hmmm... Didn't get the height quite right. Try again!"
-        else:
-            return "Not quite! Make sure you send it as 'height' and not 'max_height'. Hint: You may need to INSPECT it closer if you want to count all the pixels."
+            return "Not quite! Remember this whole scavenger hunt is ACC themed!"
 
 @app.route('/leaderboard', methods=['POST'])
 def leaderboard():
