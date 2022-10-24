@@ -67,14 +67,14 @@ def discordDeadline(deadline):
 def location(location):
     if request.method == 'GET':
         if location.lower() == 'florence':
-            return 'You are an expert! \n What is the oldest acc code? Gather the name and send a POST request to https://acc-api-scavenger-hunt.herokuapp.com/liftr with the JSON object {"code": "your_answer_here"}.'
+            return 'You are an expert! \n What is the oldest acc code? Gather the name and send a POST request to https://acc-api-scavenger-hunt.herokuapp.com/ancient with the JSON object {"code": "your_answer_here"}.'
         if location.lower() == 'college station' or location.lower() == 'cstat':
             return "Not quite! Remember, where WAS casey"
         else:
             return "Hmmmmm, find out where Casey has been in the past."
 
 
-@app.route('/liftr', methods=['POST'])
+@app.route('/ancient', methods=['POST'])
 def oldestCode():
     if request.method == 'POST':
 
